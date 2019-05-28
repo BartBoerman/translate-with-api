@@ -44,7 +44,7 @@ def f_translate_df(df, variableName, modelId = 'nl-en'):
 
 df = f_translate_df(df, variableName, modelId)
 
-fileName = fileName.strip('.csv') + '_translated.csv'
+fileName = fileName.replace('.csv','') + '_translated.csv'
 
 df.to_csv(pathlib.Path(os.getcwd(), 'output',fileName),sep = ',',index=False, header=True)
 df.count()
