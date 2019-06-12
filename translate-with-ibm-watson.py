@@ -9,6 +9,7 @@ import os as os
 import pandas as pd
 
 modelId = 'ru-en'
+#filePath = pathlib.Path(pathlib.dirname(__file__) if "__file__" in locals() else os.getcwd())
 fileName = 'item_categories.csv'
 variableName = 'item_category_name'
 
