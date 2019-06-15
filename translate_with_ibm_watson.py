@@ -4,17 +4,8 @@
 from ibm_watson import LanguageTranslatorV3
 from ibm_watson import ApiException
 import json as json
-import pathlib as pathlib
 import os as os
 import pandas as pd
-
-modelId = 'ru-en'
-#filePath = pathlib.Path(pathlib.dirname(__file__) if "__file__" in locals() else os.getcwd())
-fileName = 'item_categories.csv'
-variableName = 'item_category_name'
-
-df = pd.read_csv(pathlib.Path(os.getcwd(), 'input',fileName))
-df.count()
 
 def f_translate(textToTranslate, modelId = 'nl-en'):
     try:
@@ -42,10 +33,3 @@ def f_translate(textToTranslate, modelId = 'nl-en'):
 def f_translate_df(df, variableName, modelId = 'nl-en'):
     df[variableName] = df[variableName].apply(lambda x: f_translate(x, modelId))
     return(df)
-
-df = f_translate_df(df, variableName, modelId)
-
-fileName = fileName.replace('.csv','') + '_translated.csv'
-
-df.to_csv(pathlib.Path(os.getcwd(), 'output',fileName),sep = ',',index=False, header=True)
-df.count()
